@@ -1,11 +1,13 @@
 window.addEventListener('load', () => {
     setup();
-    const graph = buildAdList(39, 12);
+    const graph = buildAdList(39, 15);
     const playBfs  = document.getElementById("play BFS");
     const playDfs  = document.getElementById("play DFS");
+    const resetAll = document.getElementById("reset all");
     const reset = document.getElementById("reset");
     const startNode = document.getElementById('start');
     const endNode = document.getElementById('end');
+    resetAll.addEventListener('click', () => resetTable(graph, true))
     reset.addEventListener('click', () => resetTable(graph));
     playBfs.addEventListener('click', () => breadthFirstSearch(graph, startNode.parentElement.id, endNode.parentElement.id));
     playDfs.addEventListener('click', () => depthFirstSearch(graph, startNode.parentElement.id, endNode.parentElement.id));
@@ -78,7 +80,7 @@ async function breadthFirstSearch (graph, start, end) {
     }
 }
 
-function resetTable(graph) {
+function resetTable(graph, all) {
     let queue = [];
     queue.push('0,0');
 
@@ -90,7 +92,7 @@ function resetTable(graph) {
         if (current == undefined) return
         let tile = document.getElementById(current);
         if (tile.classList.contains('dfs')) tile.classList.replace('dfs', 'table-cell');
-        else if (tile.classList.contains('wall')) tile.classList.replace('wall', 'table-cell');
+        else if (tile.classList.contains('wall') && all) tile.classList.replace('wall', 'table-cell');
         else tile.classList.replace('bfs', 'table-cell');
         
             
@@ -128,14 +130,12 @@ function setup() {
         
         tableColum.classList.add("table");
         
-        for (let i=0; i<12; i++) {
+        for (let i=0; i<15; i++) {
             let tr = document.createElement("div");
             tr.classList.add("table-row");
             
             let td = document.createElement("div");
-            
             td.classList.add("table-cell");
-            td.classList.add("cell"); 
             td.id = j + ',' + i;
             td.addEventListener('dragover', (ev) => dragOverEv_handler(ev));
             td.addEventListener('drop', (ev) => dropEvent(ev));

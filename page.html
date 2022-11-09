@@ -1,16 +1,41 @@
-<link rel="StyleSheet" href="pagecss.css">
+<!DOCTYPE html>
+<html lang="en">
+<header>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="StyleSheet" href="pagecss.css">
+  <title>Algo Visualizer</title>
+</header>
 
+<body>
 <div class="table">
-    <div class="table-row" id="titleContainer">
-        
+  <div class="navBar">
+  <div id="controls">
+    <button id="play BFS">Start BF Search</button>
+    <button id="play DFS">Start DF Search</button>
+    <button id="reset all">Reset All</button>
+    <button id="reset">Reset Algo</button>
+    <div>
+    <div>
+      Start Node: 
+      <div draggable="true" class="startnode" id="start">
+      <div class="startring"><div class="dot"></div></div></div>
     </div>
-    <div id="controls">
-      <button id="play BFS">Start BF Search</button>
-      <button id="play DFS">Start DF Search</button>
-      <button id="reset">Reset</button>
-      <div draggable="true" class="startnode" id="start"></div>
-      <div draggable="true" class="endnode" id="end"></div>
-     </div>
+      <div style="padding-top: 10px;">
+      End Node:
+        <div draggable="true" class="endnode" id="end">
+        <div class="x2"></div>
+        <div class="x1"></div>
+        <div class="x3"></div>
+      </div>
+    </div>
+    </div>
+   </div>
   </div>
+    <div class="table-row" id="titleContainer"></div>
+  </div>
+</body>
 
 <script src="pathfinder.js"></script>
+</html>
