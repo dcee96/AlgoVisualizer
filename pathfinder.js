@@ -15,6 +15,7 @@ window.addEventListener('load', () => {
     endNode.addEventListener('dragstart', (ev) => dragStartEv_handler(ev));
 });
 
+
 function dragStartEv_handler(ev) {
     ev.dataTransfer.setData('text/html', ev.target.id);
 }
@@ -111,10 +112,6 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
 
-function drawWall(ev, down) {
-    ev.target.classList.replace('table-cell', 'wall');
-}
-
 function setup() {    
     const container = document.getElementById("titleContainer");
 
@@ -139,7 +136,10 @@ function setup() {
             td.id = j + ',' + i;
             td.addEventListener('dragover', (ev) => dragOverEv_handler(ev));
             td.addEventListener('drop', (ev) => dropEvent(ev));
-            td.addEventListener('mousedown', (ev) => drawWall(ev));
+            td.addEventListener('click', (ev) => {
+                if (ev.target.classList.contains('table-cell')) ev.target.classList.replace('table-cell', 'wall');
+                
+            });
             tr.appendChild(td);
             tableColum.append(tr);
         }
