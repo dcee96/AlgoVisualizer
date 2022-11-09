@@ -92,7 +92,9 @@ async function breadthFirstSearch (graph, start, end) {
 }
 
 // ResetTable uses a breathFirstTraveral to reset all of the classes in the grid to 'table-cell'
-function resetTable(graph, all) {
+// the argument is a Adjacencey list representation of the graph which represents the on screen
+// grid.
+function resetTable(graph) {
     let queue = [];
     queue.push('0,0');
 
@@ -165,7 +167,8 @@ function setup() {
     return container;
 }
 
-// This creates an Adjacency list that represents the grid on the screen.
+// This creates an Adjacency list that represents the grid on the screen. as arguements it
+// takes the height and width of the grid that is to be created.
 function buildAdList(height, width) {
     let adjacencyList = {};
 
