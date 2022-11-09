@@ -34,10 +34,6 @@
     gap: 0px;
   }
 
-  .color-change-2x {
-    -webkit-animation: color-change-2x 2s cubic-bezier(0.470, 0.000, 0.745, 0.715) forwards forwards;      
-  }
-
   .pulsate-fwd{animation:pulsate-fwd .5s ease-in-out forwards forwards}
 
   .table-cell:hover {
