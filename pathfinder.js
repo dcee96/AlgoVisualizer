@@ -109,7 +109,7 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
 
-function drawWall(ev) {
+function drawWall(ev, down) {
     ev.target.classList.replace('table-cell', 'wall');
 }
 
