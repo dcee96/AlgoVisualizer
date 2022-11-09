@@ -1,3 +1,5 @@
+// this is the main function that loads as well as set's up all data structures and html components 
+// that will be needed.
 window.addEventListener('load', () => {
     setup();
     const graph = buildAdList(39, 15);
@@ -15,17 +17,21 @@ window.addEventListener('load', () => {
     endNode.addEventListener('dragstart', (ev) => dragStartEv_handler(ev));
 });
 
-
+// this function transfers the data from the html element being move and stores it so it
+// can be transfered when a drop area is presented.
 function dragStartEv_handler(ev) {
     ev.dataTransfer.setData('text/html', ev.target.id);
 }
 
+// this function handles the interaction between the drop location and the dragged item 
+//while it is hover over it. Allowing the user to know they can drop the item there.
 function dragOverEv_handler(ev) {
     ev.preventDefault();
 
     ev.dataTransfer.dropEffect = "move";
 }
 
+// dropEvent stores the html data from the item that was drug to it.
 function dropEvent(ev) {
     ev.preventDefault();
 
@@ -33,6 +39,8 @@ function dropEvent(ev) {
     ev.target.appendChild(document.getElementById(data))
 }
 
+//BFS that stops once it reaches the end node.
+// It takes a graph represented as an Adjacency List, the start point and the end point.
 async function depthFirstSearch(graph, start, end) {
   let stack = [];
   stack.push(start);
@@ -56,6 +64,8 @@ async function depthFirstSearch(graph, start, end) {
  
 }
 
+//BFS that stops once it reaches the end node.
+// It takes a graph represented as an Adjacency List, the start point and the end point.
 async function breadthFirstSearch (graph, start, end) {
     let queue = [];
     queue.push(start);
@@ -81,6 +91,7 @@ async function breadthFirstSearch (graph, start, end) {
     }
 }
 
+// ResetTable uses a breathFirstTraveral to reset all of the classes in the grid to 'table-cell'
 function resetTable(graph, all) {
     let queue = [];
     queue.push('0,0');
@@ -108,10 +119,13 @@ function resetTable(graph, all) {
     }
 }
 
+// Sleep is used to slow down the rendering of the Algorithms search so that it can be seen as it 
+// performs it's task.
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
 
+// This function generates the grid and adds all of the needed event listeners to it.
 function setup() {    
     const container = document.getElementById("titleContainer");
 
@@ -136,10 +150,11 @@ function setup() {
             td.id = j + ',' + i;
             td.addEventListener('dragover', (ev) => dragOverEv_handler(ev));
             td.addEventListener('drop', (ev) => dropEvent(ev));
-            td.addEventListener('click', (ev) => {
-                if (ev.target.classList.contains('table-cell')) ev.target.classList.replace('table-cell', 'wall');
-                
-            });
+            td.addEventListener("mouseover", function(e){
+                if(e.buttons == 1 || e.buttons == 3){
+                    e.target.classList.replace('table-cell', 'wall');
+                }
+            })
             tr.appendChild(td);
             tableColum.append(tr);
         }
@@ -150,6 +165,7 @@ function setup() {
     return container;
 }
 
+// This creates an Adjacency list that represents the grid on the screen.
 function buildAdList(height, width) {
     let adjacencyList = {};
 
