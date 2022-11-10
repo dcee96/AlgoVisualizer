@@ -39,6 +39,36 @@ function dropEvent(ev) {
     ev.target.appendChild(document.getElementById(data))
 }
 
+/*async function dijkstra(graph, end) {
+    let visitedNodes = new Set();
+    let unvisitedNodes = new Set();
+    for (let node of graph) {
+        unvisitedNodes.add(node);
+    }
+    let totalCost = 0; 
+
+    while (unvisitedNodes.length != undefined) {
+        let current = unvisitedNodes.shift();
+        let previous;
+
+        if (current == end) {
+            for (let node of visitedNodes) {
+                let path = document.getElementById(node);
+                path.classList.replace('bfs', 'path');
+            }
+        }
+        let tile = document.getElementById(current);
+        tile.classList.replace('table-cell', 'bfs');
+        for (let node of current) {
+            current = node;
+            totalCost += ;
+            if (!visitedNodes.contains(node)) {
+                visitedNodes.add(previous);
+            }
+        }
+    }
+}*/
+
 //BFS that stops once it reaches the end node.
 // It takes a graph represented as an Adjacency List, the start point and the end point.
 async function depthFirstSearch(graph, start, end) {
