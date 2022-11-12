@@ -124,7 +124,7 @@ async function breadthFirstSearch (graph, start, end) {
 // ResetTable uses a breathFirstTraveral to reset all of the classes in the grid to 'table-cell'
 // the argument is a Adjacencey list representation of the graph which represents the on screen
 // grid.
-function resetTable(graph) {
+function resetTable(graph, all) {
     let queue = [];
     queue.push('0,0');
 
